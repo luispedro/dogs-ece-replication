@@ -1,0 +1,7 @@
+element	length	mechanism	tier	initiator_families	replication_roles	maintenance_roles	transfer_roles	viral_roles	integration_roles	plasmid_like_modules	viral_modules	flags
+SHD1_EC.088	48886	theta	tentative	Rep3_C;Rep3_N;replication initiation protein	helicase;initiator;primase	partition_atpase	coupling_protein;mob_accessory;relaxase;t4ss		integrase;transposase	True	False	
+SHD1_EC.089	67239	theta	strong	Rep3_C;Rep3_N;replication initiation protein;pPS10 RepA	initiator;polymerase;ssb	multimer_resolution;partition_atpase	coupling_protein;relaxase;t4ss	tail;viral_structural	transposase	True	True	
+SHD1_EC.090	5587	theta	tentative	Rep3_C;Rep3_N;replication initiation protein	initiator	toxin	relaxase			True	False	
+SHD1_EC.091	5866	rolling_circle	tentative	Rep_1	initiator		relaxase			True	False	
+SHD1_EC.092	73643	theta	strong	Rep3_N	initiator;polymerase;primase;ssb	multimer_resolution;partition_atpase;toxin	coupling_protein;t4ss		integrase;transposase	True	False	
+SHD1_EC.093	93833	rolling_circle|theta	tentative	replication initiation O-like	initiator;polymerase;ssb	multimer_resolution;partition_atpase;partition_other	coupling_protein;relaxase;t4ss		transposase	True	False	multimode_viral_initiator_without_viral_module

@@ -1,0 +1,89 @@
+gene_id	element	specificity	mechanisms	complete	reference_support	reference_hits	transfer_lookalike	families
+SHD1_EC.002_g0001	SHD1_EC.002	high	theta	True	False		False	Rep3_C;Rep3_N;replication initiation protein
+SHD1_EC.005_g0003	SHD1_EC.005	high	rolling_circle	True	True	pC194 Rep (family-level; 48% id)	False	Rep_1;pC194 Rep
+SHD1_EC.006_g0014	SHD1_EC.006	high	rolling_circle	False	False		False	Rep_1
+SHD1_EC.008_g0033	SHD1_EC.008	high	theta	True	False		False	Rep3_C;Rep3_N
+SHD1_EC.010_g0145	SHD1_EC.010	high	theta	True	False		False	Rep3_C;Rep3_N
+SHD1_EC.013_g0006	SHD1_EC.013	medium	rolling_circle;theta	False	False		False	replication initiation O-like
+SHD1_EC.014_g0010	SHD1_EC.014	high	theta	True	True	pPS10 RepA (family-level; 30% id)	False	Rep3_C;Rep3_N;replication initiation protein;pPS10 RepA
+SHD1_EC.014_g0013	SHD1_EC.014	high	theta	True	True	pPS10 RepA (family-level; 28% id)	False	Rep3_C;Rep3_N;replication initiation protein;pPS10 RepA
+SHD1_EC.015_g0017	SHD1_EC.015	high	theta	True	False		False	Rep3_C;Rep3_N
+SHD1_EC.017_g0007	SHD1_EC.017	high	theta	True	False		False	Rep3_C;Rep3_N;replication initiation protein
+SHD1_EC.018_g0023	SHD1_EC.018	high	theta	True	False		False	RepA_N
+SHD1_EC.020_g0009	SHD1_EC.020	high	theta	True	False		False	Rep3_C;Rep3_N
+SHD1_EC.021_g0013	SHD1_EC.021	high	theta	True	False		False	Rep3_C;Rep3_N
+SHD1_EC.021_g0015	SHD1_EC.021	high	theta	True	False		False	Rep3_C;Rep3_N;replication initiation protein
+SHD1_EC.022_g0038	SHD1_EC.022	high	theta	True	False		False	Rep3_N
+SHD1_EC.024_g0055	SHD1_EC.024	high	theta	True	True	pPS10 RepA (family-level; 28% id)	False	Rep3_C;Rep3_N;replication initiation protein;pPS10 RepA
+SHD1_EC.026_g0084	SHD1_EC.026	high	theta	True	False		False	Rep3_N
+SHD1_EC.026_g0149	SHD1_EC.026	high	theta	True	False		False	IncFII_repA
+SHD1_EC.027_g0020	SHD1_EC.027	high	theta	True	False		False	Rep3_C;Rep3_N
+SHD1_EC.029_g0010	SHD1_EC.029	high	theta	True	False		False	Rep3_C;Rep3_N;replication initiation protein
+SHD1_EC.032_g0058	SHD1_EC.032	high	theta	True	False		False	Rep3_C
+SHD1_EC.035_g0019	SHD1_EC.035	high	theta	True	False		False	Rep3_C;Rep3_N;replication initiation protein
+SHD1_EC.036_g0058	SHD1_EC.036	medium	unknown	True	False		False	replication protein
+SHD1_EC.038_g0069	SHD1_EC.038	high	theta	True	True	pPS10 RepA (family-level; 28% id)	False	Rep3_C;Rep3_N;replication initiation protein;pPS10 RepA
+SHD1_EC.040_g0002	SHD1_EC.040	high	theta	True	False		False	Rep3_C
+SHD1_EC.041_g0004	SHD1_EC.041	high	theta	True	False		False	Rep3_C;Rep3_N;replication initiation protein
+SHD1_EC.045_g0059	SHD1_EC.045	high	theta	True	True	pPS10 RepA (family-level; 28% id)	False	Rep3_C;Rep3_N;replication initiation protein;pPS10 RepA
+SHD1_EC.050_g0018	SHD1_EC.050	high	theta	True	True	pPS10 RepA (family-level; 27% id)	False	Rep3_C;Rep3_N;replication initiation protein;pPS10 RepA
+SHD1_EC.051_g0002	SHD1_EC.051	high	theta	True	False		False	Rep3_N
+SHD1_EC.054_g0012	SHD1_EC.054	high	rolling_circle	True	False		False	REP_ORF2-G2P
+SHD1_EC.055_g0022	SHD1_EC.055	high	theta	True	False		False	Rep3_N
+SHD1_EC.055_g0040	SHD1_EC.055	high	theta	True	True	R1 RepA (system-level; 97% id)	False	IncFII_repA;R1 RepA
+SHD1_EC.057_g0003	SHD1_EC.057	high	theta	True	False		False	RepA_N
+SHD1_EC.060_g0040	SHD1_EC.060	high	theta	True	False		False	Rep3_C;Rep3_N
+SHD1_EC.063_g0001	SHD1_EC.063	high	rolling_circle	True	False		False	REP_ORF2-G2P;replication initiation protein
+SHD1_EC.065_g0014	SHD1_EC.065	high	rolling_circle	True	False		False	REP_ORF2-G2P;replication initiation protein
+SHD1_EC.067_g0013	SHD1_EC.067	high	rolling_circle	True	False		False	REP_ORF2-G2P;replication initiation protein
+SHD1_EC.068_g0017	SHD1_EC.068	high	rolling_circle	True	False		False	REP_ORF2-G2P;replication initiation protein
+SHD1_EC.069_g0003	SHD1_EC.069	high	rolling_circle	True	False		False	REP_ORF2-G2P;replication initiation protein
+SHD1_EC.074_g0035	SHD1_EC.074	high	theta	True	False		False	Rep3_N
+SHD1_EC.076_g0023	SHD1_EC.076	high	theta	True	False		False	Rep3_C;Rep3_N
+SHD1_EC.077_g0004	SHD1_EC.077	medium	rolling_circle;theta	False	False		False	replication initiation O-like
+SHD1_EC.077_g0034	SHD1_EC.077	high	theta	True	False		False	RepA_N
+SHD1_EC.079_g0014	SHD1_EC.079	high	rolling_circle	True	False		False	REP_ORF2-G2P;replication initiation protein
+SHD1_EC.085_g0007	SHD1_EC.085	high	rolling_circle	True	False		False	Rep_1
+SHD1_EC.086_g0001	SHD1_EC.086	high	theta	True	True	pPS10 RepA (family-level; 27% id)	False	Rep3_C;Rep3_N;replication initiation protein;pPS10 RepA
+SHD1_EC.086_g0006	SHD1_EC.086	high	unknown	True	False	pBI143 RepA (system-level; 73% id)	False	pBI143 RepA
+SHD1_EC.087_g0003	SHD1_EC.087	high	rolling_circle	True	True	PCV1 Rep (family-level; 26% id)	False	Viral_Rep;PCV1 Rep
+SHD1_EC.088_g0013	SHD1_EC.088	high	theta	True	False		False	Rep3_C;Rep3_N;replication initiation protein
+SHD1_EC.089_g0069	SHD1_EC.089	high	theta	True	True	pPS10 RepA (family-level; 27% id)	False	Rep3_C;Rep3_N;replication initiation protein;pPS10 RepA
+SHD1_EC.090_g0005	SHD1_EC.090	high	theta	True	False		False	Rep3_C;Rep3_N;replication initiation protein
+SHD1_EC.091_g0009	SHD1_EC.091	high	rolling_circle	True	False		False	Rep_1
+SHD1_EC.092_g0079	SHD1_EC.092	high	theta	True	False		False	Rep3_N
+SHD1_EC.093_g0030	SHD1_EC.093	medium	rolling_circle;theta	False	False		False	replication initiation O-like
+SHD1_EC.101_g0014	SHD1_EC.101	medium	unknown	True	False		False	replication protein
+SHD1_EC.115_g0006	SHD1_EC.115	high	theta	True	False		False	Rep3_C;Rep3_N;replication initiation protein
+SHD1_EC.119_g0001	SHD1_EC.119	high	theta	True	False		False	Rep3_C;Rep3_N
+SHD1_EC.122_g0007	SHD1_EC.122	medium	rolling_circle	True	False		True	Rep_trans;Rol_Rep_N;replication initiation protein
+SHD1_EC.128_g0005	SHD1_EC.128	high	theta	True	False		False	Rep3_N
+SHD1_EC.131_g0005	SHD1_EC.131	medium	rolling_circle	True	False		True	Rep_trans;Rol_Rep_N;replication initiation protein
+SHD1_EC.133_g0013	SHD1_EC.133	medium	unknown	True	False		False	replication protein
+SHD1_EC.136_g0031	SHD1_EC.136	medium	unknown	False	False		False	replication protein
+SHD1_EC.143_g0032	SHD1_EC.143	high	theta	False	False		False	Rep3_C
+SHD1_EC.143_g0106	SHD1_EC.143	high	theta	True	False		False	Rep3_C;Rep3_N;replication initiation protein
+SHD1_EC.144_g0001	SHD1_EC.144	high	theta	True	False		False	Rep3_C;Rep3_N
+SHD1_EC.147_g0041	SHD1_EC.147	medium	unknown	False	False		False	replication initiation protein
+SHD1_EC.147_g0135	SHD1_EC.147	high	theta	True	False		False	Rep3_C;Rep3_N;replication initiation protein
+SHD1_EC.147_g0136	SHD1_EC.147	high	theta	True	False		False	Rep3_C;Rep3_N;replication initiation protein
+SHD1_EC.148_g0010	SHD1_EC.148	high	rolling_circle	True	False		False	REP_ORF2-G2P;replication initiation protein
+SHD1_EC.152_g0004	SHD1_EC.152	high	theta	True	False		False	Rep3_C;Rep3_N
+SHD1_EC.153_g0007	SHD1_EC.153	high	theta	True	False		False	Rep3_C;Rep3_N
+SHD1_EC.156_g0001	SHD1_EC.156	high	theta	True	False		False	Rep3_N;replication initiation protein
+SHD1_EC.165_g0001	SHD1_EC.165	high	theta	True	True	pPS10 RepA (family-level; 25% id)	False	Rep3_C;Rep3_N;replication initiation protein;pPS10 RepA
+SHD1_EC.169_g0001	SHD1_EC.169	high	theta	True	False		False	Rep3_C;replication initiation protein
+SHD1_EC.171_g0011	SHD1_EC.171	high	theta	True	False		False	Rep3_C;Rep3_N
+SHD1_EC.172_g0003	SHD1_EC.172	medium	unknown	True	False		False	replication protein
+SHD1_EC.172_g0010	SHD1_EC.172	medium	unknown	True	False		False	replication protein
+SHD1_EC.174_g0046	SHD1_EC.174	high	theta	True	False		False	Rep3_C;Rep3_N;replication initiation protein
+SHD1_EC.175_g0039	SHD1_EC.175	medium	rolling_circle	True	False		True	Rep_trans;Rol_Rep_N;replication initiation protein
+SHD1_EC.176_g0078	SHD1_EC.176	high	theta	True	False		False	Rep3_C;Rep3_N;replication initiation protein
+SHD1_EC.177_g0021	SHD1_EC.177	high	theta	True	False		False	Rep3_C
+SHD1_EC.178_g0031	SHD1_EC.178	medium	unknown	False	False		False	replication protein
+SHD1_EC.179_g0007	SHD1_EC.179	high	theta	True	False		False	Rep3_C;replication initiation protein
+SHD1_EC.180_g0028	SHD1_EC.180	medium	unknown	True	False		False	replication protein
+SHD1_EC.182_g0002	SHD1_EC.182	high	theta	True	False		False	RepA_N
+SHD1_EC.184_g0069	SHD1_EC.184	high	theta	True	True	R6K pi (family-level; 29% id)	False	Rep3_C;Rep3_N;replication initiation protein;R6K pi
+SHD1_EC.184_g0070	SHD1_EC.184	high	theta	True	True	R6K pi (family-level; 28% id)	False	Rep3_C;Rep3_N;replication initiation protein;R6K pi
+SHD1_EC.184_g0071	SHD1_EC.184	medium	unknown	False	False		False	replication initiation protein

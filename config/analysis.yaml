@@ -1,0 +1,75 @@
+# Analysis configuration for the ECE replication catalogue.
+# Bump `analysis_version` whenever task implementations change: Jug hashes
+# task arguments (including this value), not code, so the version string is
+# what invalidates stale cached results.
+analysis_version: "2026-10-28.1"
+
+paths:
+  manifest: data/manifest.tsv
+  raw_dir: data/raw
+  refs_dir: data/refs
+  work_dir: results/work
+  results_dir: results
+  figures_dir: figures
+
+inputs:
+  fasta: data/raw/SHD1_EC.fna.gz
+  props: data/raw/SHD1_EC_props.tsv.gz
+  expected_counts:
+    total: 185
+    plasmid: 58
+    virus: 30
+    uncategorized: 97
+    dual_marker: 6
+  dual_marker_note: "Markers for both plasmid and virus present"
+
+references:
+  pfam_hmm: data/refs/Pfam-A.hmm.gz
+  pfam_dat: data/refs/Pfam-A.hmm.dat.gz
+  phrog_hmm: data/refs/phrogs_v4.hmm.gz
+  phrog_annot: data/refs/phrog_annot_v4.tsv
+  reference_proteins_table: config/reference_proteins.tsv
+  reference_proteins_fasta: data/refs/reference_proteins.faa
+  validation_table: config/validation_elements.tsv
+  validation_fasta: data/refs/validation_elements.fna
+
+gene_prediction:
+  # Pyrodigal metagenomic mode; extra passes on rotated sequences recover
+  # genes that span (or are truncated by) the arbitrary FASTA start/end.
+  meta: true
+  rotations: [0.5, 0.25, 0.75]
+  min_gene_length_nt: 90
+
+search:
+  threads: 16
+  hmmsearch_evalue: 1.0e-3       # reporting threshold; rules apply stricter cut-offs
+  diamond_mode: "--ultra-sensitive"
+  diamond_evalue: 1.0e-3
+  mmseqs_cluster_min_seq_id: 0.3
+  mmseqs_cluster_coverage: 0.5
+  mmseqs_network_evalue: 1.0e-3
+
+origins:
+  flank_nt: 1000            # max intergenic sequence taken on each side of an initiator
+  min_region_nt: 150
+  dr_kmer: 10
+  ir_min_stem: 8
+  ir_max_stem: 30
+  ir_loop_min: 3
+  ir_loop_max: 20
+  at_window: 60
+  n_background: 200
+  seed: 20261028
+  q_threshold: 0.1
+
+neighbourhood:
+  flank_genes: 4
+  min_elements_for_recurrent: 3
+
+comparisons:
+  n_permutations: 20000
+  seed: 1729
+  fdr: 0.1
+  group_jaccard: 0.3        # protein-family Jaccard used to group related ECEs
+
+threshold_sets: [default, strict, relaxed]

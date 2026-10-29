@@ -1,0 +1,24 @@
+element	accession	description	expected_class	expected_mechanism	topology_note	purpose
+pT181	J01764.1	Staphylococcus aureus plasmid pT181	plasmid	rolling_circle	circular	positive
+pC194	V01277.1	Staphylococcus aureus plasmid pC194	plasmid	rolling_circle	circular	positive
+pMV158	MZ396393.1	Streptococcus pneumoniae plasmid pMV158	plasmid	rolling_circle	circular	positive; carries MobM relaxase
+pE194	V01278.1	Staphylococcus aureus plasmid pE194	plasmid	rolling_circle	circular	positive; carries Pre/Mob relaxase
+pUB110	NC_001384.1	Staphylococcus aureus plasmid pUB110	plasmid	rolling_circle	circular	positive
+phiX174	NC_001422.1	Escherichia phage phiX174	virus	rolling_circle	circular	positive
+M13	NC_003287.2	Enterobacteria phage M13	virus	rolling_circle	circular	positive
+PCV2	NC_005148.1	Porcine circovirus 2	virus	rolling_circle	circular	positive
+F	NC_002483.1	Escherichia coli plasmid F	plasmid	theta	circular	positive; difficult negative for relaxase (TraI)
+RK2	BN000925.1	IncP-alpha plasmid RK2	plasmid	theta	circular	positive; carries TraI relaxase
+R6K	LT827129.1	Escherichia coli plasmid R6K	plasmid	theta	circular	positive
+R1	KY749247.1	Salmonella plasmid R1	plasmid	theta	circular	positive
+pSC101	NC_002056.1	Salmonella plasmid pSC101	plasmid	theta	circular	positive
+ColE1	J01566.1	Escherichia coli plasmid ColE1	plasmid	theta	circular	RNA-initiated theta without Rep protein; expected unresolved or copy-control-only
+pSK41	AF051917.1	Staphylococcus aureus plasmid pSK41	plasmid	theta	circular	positive
+pIP501	NC_002136.1	Streptococcus agalactiae plasmid pIP501 (replicon)	plasmid	theta	circular	positive
+pAMbeta1	NC_013514.1	Enterococcus faecalis plasmid pAMbeta1	plasmid	theta	circular	positive
+pSM19035	AY357120.1	Streptococcus pyogenes plasmid pSM19035	plasmid	theta	circular	positive
+RSF1010	M28829.1	IncQ plasmid RSF1010	plasmid	strand_displacement	circular (deposited as linear)	positive; MobA relaxase-primase is difficult negative for RCR
+lambda	J02459.1	Escherichia phage lambda	virus	theta;rolling_circle	linear genome, circularises via cos	positive; multi-mode virus
+P2	AF063097.1	Escherichia phage P2	virus	rolling_circle	linear genome, circularises via cos	positive
+Tn916	U09422.1	Enterococcus faecalis transposon Tn916	ice	none	circular excised intermediate	difficult negative: MobT relaxase, no vegetative plasmid replicon
+pBI143	U30316.1	Bacteroides fragilis plasmid pBI143	plasmid	unknown	circular	exploratory gut exemplar; mechanism not established

@@ -1,0 +1,7 @@
+class_a	class_b	n_a	n_b	median_a	median_b	rank_biserial	p	q_bh
+none_detected	rolling_circle	59	14	9287	1.16e+04	-0.184	0.2901	0.3481
+none_detected	theta	59	53	9287	3.802e+04	-0.5005	5.185e-06	1.555e-05
+none_detected	unassigned	59	57	9287	3.461e+04	-0.6574	1.045e-09	6.271e-09
+rolling_circle	theta	14	53	1.16e+04	3.802e+04	-0.3962	0.02387	0.0358
+rolling_circle	unassigned	14	57	1.16e+04	3.461e+04	-0.4436	0.01075	0.0215
+theta	unassigned	53	57	3.802e+04	3.461e+04	-0.07911	0.4765	0.4765

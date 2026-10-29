@@ -1,0 +1,7 @@
+tool	version
+diamond	diamond version 2.2.8
+hmmsearch	HMMER 3.4 (Aug 2023); http://hmmer.org/
+jug	2.7.0
+mmseqs	18.8cc5c
+pandas	3.1.0
+pyrodigal	3.7.1

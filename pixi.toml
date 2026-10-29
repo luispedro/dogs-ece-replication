@@ -1,0 +1,31 @@
+[workspace]
+name = "ece-replication"
+version = "0.1.0"
+description = "Evidence-based catalogue of replication systems in Shanghai dog gut ECEs"
+channels = ["conda-forge", "bioconda"]
+platforms = ["linux-64"]
+
+[dependencies]
+python = "3.12.*"
+jug = "*"
+numpy = "*"
+pandas = "*"
+scipy = "*"
+matplotlib = "*"
+networkx = "*"
+pyyaml = "*"
+pyrodigal = "*"
+hmmer = "*"
+diamond = "*"
+mmseqs2 = "*"
+pytest = "*"
+requests = "*"
+
+[tasks]
+fetch-refs = "python -m ece_replication.fetch_refs"
+test = "pytest -q tests"
+run = "jug execute jugfile.py"
+status = "jug status jugfile.py"
+
+[activation.env]
+PYTHONPATH = "$PIXI_PROJECT_ROOT/src"

@@ -1,0 +1,383 @@
+# Mapping from protein families / reference proteins to replication roles and
+# mechanisms.  This is the auditable core of the analysis: every entry records
+# the role, which mechanisms it can support, how specific that support is, and
+# known ambiguities.  Pfam entries are keyed by accession (version-less) and
+# were checked against Pfam 38.2 names/descriptions (see `pfam_name`).
+#
+# specificity:
+#   high   - family is defined by experimentally characterised initiators of a
+#            single mechanism; a confident hit supports that mechanism.
+#   medium - role is clear but the family spans mechanisms, has documented
+#            look-alikes (e.g. transfer relaxases), or is poorly characterised.
+#   low    - role-level evidence only; never supports a mechanism by itself.
+#
+# mechanisms: rolling_circle | theta | strand_displacement | protein_primed |
+#             host_like (homolog of chromosomal machinery) | unknown
+version: "2026-10-28.1"
+
+modules:
+  replication: [initiator, helicase, primase, primase_helicase, polymerase, helicase_loader,
+                replisome_organiser, ssb, copy_control, terminal_protein, replication_accessory]
+  maintenance: [partition_atpase, partition_cbp, partition_other, toxin, antitoxin, multimer_resolution]
+  transfer: [relaxase, mob_accessory, coupling_protein, t4ss]
+  viral: [terminase, portal, capsid, tail, prohead_protease, head_tail, viral_structural, lysis]
+  integration: [integrase, transposase]
+
+# Threshold sets; `default` drives the main results, the others are used for
+# the sensitivity analysis.
+thresholds:
+  default:
+    pfam_score: gathering        # per-family GA bit score (sequence and domain)
+    pfam_min_hmm_coverage: 0.35  # fraction of the HMM covered by significant domains
+    initiator_full_coverage: 0.6 # HMM coverage needed for an initiator to count as complete
+    phrog_evalue: 1.0e-5
+    phrog_min_hmm_coverage: 0.35
+    diamond_evalue: 1.0e-5
+    diamond_min_identity: 25
+    diamond_min_coverage: 0.5    # on both query and subject
+    diamond_system_identity: 50  # identity for a "system-level" (close homolog) match
+    diamond_system_coverage: 0.7
+  strict:
+    pfam_score: gathering_plus_5
+    pfam_min_hmm_coverage: 0.5
+    initiator_full_coverage: 0.7
+    phrog_evalue: 1.0e-10
+    phrog_min_hmm_coverage: 0.5
+    diamond_evalue: 1.0e-10
+    diamond_min_identity: 30
+    diamond_min_coverage: 0.6
+    diamond_system_identity: 60
+    diamond_system_coverage: 0.8
+  relaxed:
+    pfam_score: evalue_1e-5      # ignore GA; accept any domain with i-Evalue <= 1e-5
+    pfam_min_hmm_coverage: 0.25
+    initiator_full_coverage: 0.5
+    phrog_evalue: 1.0e-3
+    phrog_min_hmm_coverage: 0.25
+    diamond_evalue: 1.0e-3
+    diamond_min_identity: 20
+    diamond_min_coverage: 0.4
+    diamond_system_identity: 40
+    diamond_system_coverage: 0.6
+
+# Element-level combination rules (see evidence.py)
+combination:
+  # RCR plasmids/viruses are small; larger elements carrying an RCR-type
+  # initiator are flagged rather than rejected (cointegrates, ICEs, phages).
+  rcr_context_max_length: 25000
+  origin_q_threshold: 0.1
+  viral_module_min_genes: 2       # viral structural/packaging genes needed for "viral context"
+  transfer_context_roles: [coupling_protein, t4ss]
+  # Origin features allowed to corroborate an initiator. Only direct repeats are
+  # enriched next to candidate initiators relative to control genes in this
+  # dataset (results/origins.tsv: DR 26% vs 7.5% of regions at P<0.05; inverted
+  # repeats 39% vs 41%; AT-rich windows 40% vs 38%), so hairpins and AT-rich
+  # windows are reported but do not upgrade a call.
+  origin_support_features: [dr]
+
+pfam:
+  # ---------------- replication initiators: rolling circle -----------------
+  PF01446: {pfam_name: Rep_1, role: initiator, mechanisms: [rolling_circle], specificity: high,
+            family: "Rep_1 (pC194/pUB110-type) HUH RCR initiator",
+            support: "Pfam: Rep nicks the dso, 3'-OH extended by host replicase, 5' end displaced (Khan 1997 MMBR)"}
+  PF01719: {pfam_name: Rep_OBD, role: initiator, mechanisms: [rolling_circle], specificity: high,
+            family: "Rep_OBD (pMV158-type) HUH RCR initiator",
+            support: "pMV158 RepB structure (Boer et al. 2009 EMBO J)"}
+  PF02486: {pfam_name: Rep_trans, role: initiator, mechanisms: [rolling_circle], specificity: medium,
+            family: "Rep_trans (pT181/pC221-type) RCR initiator",
+            support: "pT181 RepC / pC221 RepD nick dso (Koepsel 1985; Thomas 1990)",
+            ambiguity: "Shares fold with MobT relaxases of Tn916-like ICEs; down-weighted in conjugative/integrative context",
+            transfer_lookalike: true}
+  PF18106: {pfam_name: Rol_Rep_N, role: initiator, mechanisms: [rolling_circle], specificity: medium,
+            family: "RCR initiator N-terminal domain", support: "Pfam family definition",
+            ambiguity: "Validation: also matches the Tn916 MobT relaxase (Orf20) at full length",
+            transfer_lookalike: true}
+  PF22477: {pfam_name: RepD-like_N, role: initiator, mechanisms: [rolling_circle], specificity: high,
+            family: "RepD-like (pT181 family) N-terminal domain", support: "RepD structure (Carr et al. 2016)"}
+  PF02407: {pfam_name: Viral_Rep, role: initiator, mechanisms: [rolling_circle], specificity: high,
+            family: "CRESS-DNA virus Rep endonuclease", support: "Circovirus/nanovirus RCR (Rosario et al. 2012)"}
+  PF00799: {pfam_name: Gemini_AL1, role: initiator, mechanisms: [rolling_circle], specificity: high,
+            family: "Geminivirus-type Rep endonuclease", support: "Gutierrez 1999"}
+  PF05840: {pfam_name: Phage_GPA, role: initiator, mechanisms: [rolling_circle], specificity: high,
+            family: "phiX174/P2 gene A RCR initiator", support: "phiX174 A (Eisenberg 1977); P2 A (Liu 1994)"}
+  PF05144: {pfam_name: Phage_CRI, role: initiator, mechanisms: [rolling_circle], specificity: high,
+            family: "Inovirus gene II (G2P) RCR initiator", support: "f1/M13 gII (Meyer & Geider 1979)"}
+  PF05155: {pfam_name: G2P_X_C, role: initiator, mechanisms: [rolling_circle], specificity: high,
+            family: "Inovirus G2P C-terminal domain", support: "Pfam family definition"}
+  PF23343: {pfam_name: REP_ORF2-G2P, role: initiator, mechanisms: [rolling_circle], specificity: high,
+            family: "Inovirus-like ORF2/G2P Rep", support: "Pfam family definition"}
+  # ---------------- replication initiators: theta ---------------------------
+  PF01051: {pfam_name: Rep3_N, role: initiator, mechanisms: [theta], specificity: high,
+            family: "Rep_3 iteron-binding initiator (RepE/pi/pPS10 RepA)",
+            support: "Iteron-binding WH initiators (Giraldo 2003; Chattoraj 2000)"}
+  PF21205: {pfam_name: Rep3_C, role: initiator, mechanisms: [theta], specificity: high,
+            family: "Rep_3 iteron-binding initiator, WH2 domain", support: "Second winged-helix of Rep_3 initiators"}
+  PF03090: {pfam_name: Replicase, role: initiator, mechanisms: [theta], specificity: high,
+            family: "Iteron-binding RepA (Rep_3-like)", support: "Pfam: monomers bind repeats; dimers autorepress"}
+  PF02387: {pfam_name: IncFII_repA, role: initiator, mechanisms: [theta], specificity: high,
+            family: "IncFII RepA", support: "R1 RepA (Masai & Arai 1987)"}
+  PF07042: {pfam_name: TrfA, role: initiator, mechanisms: [theta], specificity: high,
+            family: "IncP TrfA", support: "RK2 TrfA (Konieczny 2014)"}
+  PF06970: {pfam_name: RepA_N, role: initiator, mechanisms: [theta], specificity: high,
+            family: "RepA_N (pSK41/pLS32-type) Firmicute theta initiator",
+            support: "Weaver et al. 2009 Plasmid; Schumacher et al. 2014 PNAS"}
+  PF03428: {pfam_name: RP-C, role: initiator, mechanisms: [theta], specificity: high,
+            family: "RepC of repABC replicons", support: "Pinto et al. 2012"}
+  PF11800: {pfam_name: RP-C_C, role: initiator, mechanisms: [theta], specificity: medium,
+            family: "RepC C-terminal region", support: "Pfam family definition"}
+  PF20199: {pfam_name: RepSA, role: initiator, mechanisms: [unknown], specificity: medium,
+            family: "pSAM2 replication initiator", support: "Pfam"}
+  # ---------------- replication initiators: strand displacement ------------
+  PF06504: {pfam_name: RepC, role: initiator, mechanisms: [strand_displacement], specificity: medium,
+            family: "IncQ-type RepC", support: "RSF1010 RepC (Scherzinger 1991); validated on RSF1010",
+            ambiguity: "Pfam family not restricted to IncQ; checked against RSF1010 RepC"}
+  PF16793: {pfam_name: RepB_primase, role: primase, mechanisms: [strand_displacement], specificity: high,
+            family: "IncQ RepB' primase", support: "RSF1010 RepB' (Geibel et al. 2009)"}
+  PF22448: {pfam_name: RepB_primase_C, role: primase, mechanisms: [strand_displacement], specificity: high,
+            family: "IncQ RepB' primase C-terminal domain", support: "Geibel et al. 2009"}
+  # ---------------- initiators of unknown/heterogeneous mechanism ----------
+  PF04796: {pfam_name: RepA_C, role: initiator, mechanisms: [unknown], specificity: medium,
+            family: "RepA_C plasmid initiator", support: "Pfam: role in replication not clearly understood"}
+  PF05732: {pfam_name: RepL, role: initiator, mechanisms: [unknown], specificity: medium,
+            family: "Firmicute RepL", support: "Pfam: Firmicute RepL involved in plasmid replication",
+            ambiguity: "Mechanism not established for the family"}
+  PF13814: {pfam_name: Replic_Relax, role: initiator, mechanisms: [unknown], specificity: medium,
+            family: "Replication-relaxation protein", support: "Pfam: essential for replication and DNA relaxation",
+            ambiguity: "Relaxation activity resembles transfer nickases"}
+  PF27691: {pfam_name: Rep_assoc_RepA4, role: replication_accessory, mechanisms: [unknown], specificity: low,
+            family: "RepA4 replication-associated", support: "Pfam"}
+  PF26868: {pfam_name: Phage_P1_RepL, role: initiator, mechanisms: [unknown], specificity: medium,
+            family: "Phage P1 lytic RepL", support: "P1 lytic replicon"}
+  # ---------------- viral replication modules ------------------------------
+  PF04492: {pfam_name: Phage_rep_O, role: initiator, mechanisms: [theta, rolling_circle], specificity: high,
+            family: "Lambda O-like origin-binding protein",
+            support: "Lambda: theta early, sigma (rolling circle) late (Furth & Wickner 1983)"}
+  PF30394: {pfam_name: Phage_rep_O_C, role: initiator, mechanisms: [theta, rolling_circle], specificity: medium,
+            family: "Lambda O-like C-terminal domain", support: "Pfam"}
+  PF06992: {pfam_name: Phage_lambda_P, role: helicase_loader, mechanisms: [theta, rolling_circle], specificity: medium,
+            family: "Lambda P helicase loader", support: "Lambda P"}
+  PF09681: {pfam_name: Phage_rep_org_N, role: replisome_organiser, mechanisms: [unknown], specificity: medium,
+            family: "Firmicute phage replisome organiser", support: "Pfam"}
+  PF26815: {pfam_name: Phage_RepB, role: replication_accessory, mechanisms: [unknown], specificity: low,
+            family: "Phage replication gene B (DnaB interaction)", support: "Pfam"}
+  PF26845: {pfam_name: Phage_phi29_DNA_rep1, role: replication_accessory, mechanisms: [protein_primed], specificity: medium,
+            family: "phi29 replication protein 1", support: "Pfam"}
+  PF03175: {pfam_name: DNA_pol_B_2, role: polymerase, mechanisms: [protein_primed], specificity: medium,
+            family: "Protein-primed family B polymerase",
+            support: "phi29-type; replication of linear genomes with terminal protein",
+            ambiguity: "Unexpected on circular elements; flags possible linear/misassembled elements"}
+  # ---------------- replisome components ------------------------------------
+  PF00772: {pfam_name: DnaB, role: helicase, mechanisms: [unknown], specificity: low, family: "DnaB-like helicase N-term"}
+  PF03796: {pfam_name: DnaB_C, role: helicase, mechanisms: [unknown], specificity: low, family: "DnaB-like helicase"}
+  PF08706: {pfam_name: D5_N, role: helicase, mechanisms: [unknown], specificity: low, family: "SF3 D5-like helicase N-term",
+            support: "Associated with phage/plasmid primase-helicases (Iyer et al. 2005)"}
+  PF03288: {pfam_name: Pox_D5, role: helicase, mechanisms: [unknown], specificity: low, family: "SF3 D5-like helicase"}
+  PF00910: {pfam_name: RNA_helicase, role: helicase, mechanisms: [unknown], specificity: low, family: "SF3 helicase (CRESS Rep C-term)"}
+  PF19263: {pfam_name: DUF5906, role: helicase, mechanisms: [unknown], specificity: low,
+            family: "DUF5906 (SF3 helicase-associated)", ambiguity: "Function inferred, not characterised"}
+  PF08275: {pfam_name: DNAG_N, role: primase, mechanisms: [unknown], specificity: low, family: "DnaG primase core"}
+  PF01807: {pfam_name: Zn_ribbon_DnaG, role: primase, mechanisms: [unknown], specificity: low, family: "DnaG zinc ribbon"}
+  PF08273: {pfam_name: Zn_Ribbon_Prim, role: primase, mechanisms: [unknown], specificity: low, family: "T7-like primase zinc ribbon"}
+  PF13155: {pfam_name: Toprim_2, role: primase, mechanisms: [unknown], specificity: low, family: "Toprim-like",
+            ambiguity: "Toprim domains also occur in topoisomerases and OLD nucleases"}
+  PF13362: {pfam_name: Toprim_3, role: primase, mechanisms: [unknown], specificity: low, family: "Toprim",
+            ambiguity: "Toprim domains also occur in topoisomerases and OLD nucleases"}
+  PF08708: {pfam_name: PriCT_1, role: primase, mechanisms: [unknown], specificity: low, family: "Primase C-terminal 1"}
+  PF08707: {pfam_name: PriCT_2, role: primase, mechanisms: [unknown], specificity: low, family: "Primase C-terminal 2"}
+  PF09250: {pfam_name: Prim-Pol, role: primase, mechanisms: [unknown], specificity: low, family: "Prim-Pol"}
+  PF10410: {pfam_name: DnaB_bind, role: primase, mechanisms: [unknown], specificity: low, family: "DnaG DnaB-binding"}
+  PF00136: {pfam_name: DNA_pol_B, role: polymerase, mechanisms: [unknown], specificity: low, family: "Family B polymerase"}
+  PF00476: {pfam_name: DNA_pol_A, role: polymerase, mechanisms: [unknown], specificity: low, family: "Family A polymerase"}
+  PF03104: {pfam_name: DNA_pol_B_exo1, role: polymerase, mechanisms: [unknown], specificity: low, family: "Pol B exonuclease"}
+  PF00436: {pfam_name: SSB, role: ssb, mechanisms: [unknown], specificity: low, family: "SSB"}
+  PF07261: {pfam_name: DnaB_2, role: helicase_loader, mechanisms: [unknown], specificity: low,
+            family: "DnaD/DnaB-like replication initiation and membrane attachment"}
+  PF10134: {pfam_name: RPA, role: replication_accessory, mechanisms: [unknown], specificity: low,
+            family: "RPA ssDNA-binding replication protein"}
+  # ---------------- copy-number control -------------------------------------
+  PF01815: {pfam_name: Rop, role: copy_control, mechanisms: [theta], specificity: medium,
+            family: "ColE1 Rop", support: "RNA-primed ColE1-type theta replication (Tomizawa)"}
+  PF10723: {pfam_name: RepB-RCR_reg, role: copy_control, mechanisms: [unknown], specificity: low,
+            family: "RepB/CopB-like replication regulator",
+            ambiguity: "Validation: strong hits to IncFII CopB-like proteins of theta plasmids R1 and F, only a sub-GA hit to pMV158 CopG; not mechanism-specific despite the Pfam name"}
+  # ---------------- maintenance ---------------------------------------------
+  PF13614: {pfam_name: AAA_31, role: partition_atpase, specificity: low, family: "ParA-like ATPase"}
+  PF01656: {pfam_name: CbiA, role: partition_atpase, specificity: low, family: "ParA/MinD-like ATPase",
+            ambiguity: "Shared with metabolic CobQ/CobB enzymes"}
+  PF02195: {pfam_name: ParB_N, role: partition_cbp, specificity: medium, family: "ParB N-terminal"}
+  PF17762: {pfam_name: HTH_ParB, role: partition_cbp, specificity: medium, family: "ParB HTH"}
+  PF07506: {pfam_name: RepB, role: partition_cbp, specificity: medium, family: "RepB plasmid partitioning (repABC)"}
+  PF06406: {pfam_name: StbA_N, role: partition_atpase, specificity: medium, family: "ParM (type II partition)"}
+  PF21523: {pfam_name: ParM_N, role: partition_atpase, specificity: medium, family: "ParM C-terminal"}
+  PF00091: {pfam_name: Tubulin, role: partition_atpase, specificity: low, family: "TubZ-like (type III partition)",
+            ambiguity: "FtsZ/tubulin family"}
+  PF01672: {pfam_name: Plasmid_parti_N, role: partition_other, specificity: medium, family: "Putative plasmid partition"}
+  PF08535: {pfam_name: KorB, role: partition_cbp, specificity: medium, family: "KorB"}
+  PF11740: {pfam_name: KfrA_N, role: partition_other, specificity: medium, family: "KfrA-like"}
+  PF00239: {pfam_name: Resolvase, role: multimer_resolution, specificity: low, family: "Serine resolvase",
+            ambiguity: "Also transposon resolvases/invertases"}
+  PF05015: {pfam_name: HigB-like_toxin, role: toxin, specificity: medium, family: "HigB"}
+  PF09907: {pfam_name: HigB_toxin, role: toxin, specificity: medium, family: "HigB"}
+  PF02604: {pfam_name: PhdYeFM_antitox, role: antitoxin, specificity: medium, family: "Phd/YefM"}
+  PF01850: {pfam_name: PIN, role: toxin, specificity: low, family: "PIN (VapC)"}
+  PF13470: {pfam_name: PIN_3, role: toxin, specificity: low, family: "PIN"}
+  PF02452: {pfam_name: PemK_toxin, role: toxin, specificity: medium, family: "MazF/PemK"}
+  PF05016: {pfam_name: ParE_toxin, role: toxin, specificity: medium, family: "ParE"}
+  PF04221: {pfam_name: RelB, role: antitoxin, specificity: medium, family: "RelB"}
+  PF15738: {pfam_name: YafQ_toxin, role: toxin, specificity: medium, family: "YafQ"}
+  PF06414: {pfam_name: Zeta_toxin, role: toxin, specificity: medium, family: "Zeta"}
+  PF06296: {pfam_name: RelE, role: toxin, specificity: medium, family: "RelE"}
+  PF07927: {pfam_name: HicA_toxin, role: toxin, specificity: medium, family: "HicA"}
+  PF15919: {pfam_name: HicB_lk_antitox, role: antitoxin, specificity: medium, family: "HicB"}
+  PF03693: {pfam_name: ParD_antitoxin, role: antitoxin, specificity: medium, family: "ParD"}
+  PF06769: {pfam_name: YoeB_toxin, role: toxin, specificity: medium, family: "YoeB"}
+  PF04014: {pfam_name: MazE_antitoxin, role: antitoxin, specificity: medium, family: "MazE"}
+  PF15970: {pfam_name: HicB-like_2, role: antitoxin, specificity: medium, family: "HicB-like"}
+  PF02796: {pfam_name: HTH_7, role: multimer_resolution, specificity: low, family: "Resolvase HTH"}
+  # ---------------- transfer (kept distinct from replication) ---------------
+  PF03432: {pfam_name: Relaxase, role: relaxase, specificity: high, family: "MOBP/MOBQ relaxase (MobA/VirD2)"}
+  PF03389: {pfam_name: MobA_MobL, role: relaxase, specificity: high, family: "MOBQ relaxase"}
+  PF18555: {pfam_name: MobL, role: relaxase, specificity: high, family: "MobL relaxase"}
+  PF08751: {pfam_name: TrwC, role: relaxase, specificity: high, family: "MOBF relaxase"}
+  PF20874: {pfam_name: Relaxase_M, role: relaxase, specificity: high, family: "Relaxase central domain"}
+  PF01076: {pfam_name: Mob_Pre, role: relaxase, specificity: high, family: "MOBV Pre/Mob",
+            ambiguity: "Common on small RCR plasmids but a transfer nickase, not a replication initiator"}
+  PF05713: {pfam_name: MobC, role: mob_accessory, specificity: medium, family: "MobC"}
+  PF02534: {pfam_name: T4SS-DNA_transf, role: coupling_protein, specificity: high, family: "T4CP (TraG/TraD/VirD4)"}
+  PF12696: {pfam_name: TraG-D_C, role: coupling_protein, specificity: high, family: "T4CP C-terminal"}
+  PF03135: {pfam_name: CagE_TrbE_VirB, role: t4ss, specificity: high, family: "VirB4"}
+  PF12846: {pfam_name: AAA_10, role: t4ss, specificity: medium, family: "VirB4-like AAA"}
+  PF04610: {pfam_name: TrbL, role: t4ss, specificity: high, family: "VirB6/TrbL"}
+  PF07916: {pfam_name: TraG_N, role: t4ss, specificity: high, family: "F-type TraG"}
+  PF01580: {pfam_name: FtsK_SpoIIIE, role: coupling_protein, specificity: low,
+            family: "FtsK/SpoIIIE (Gram+ conjugative coupling-like)", ambiguity: "Also chromosomal FtsK"}
+  PF21983: {pfam_name: NikA-like, role: mob_accessory, specificity: medium, family: "NikA-like relaxosome protein"}
+  PF19044: {pfam_name: P-loop_TraG, role: t4ss, specificity: high, family: "TraG P-loop (VirB4-like)"}
+  PF27097: {pfam_name: VirB4_TrbE_N, role: t4ss, specificity: high, family: "VirB4 N-terminal"}
+  PF03524: {pfam_name: CagX, role: t4ss, specificity: high, family: "VirB9-like"}
+  PF03743: {pfam_name: TrbI, role: t4ss, specificity: high, family: "VirB10-like"}
+  PF04335: {pfam_name: VirB8, role: t4ss, specificity: high, family: "VirB8"}
+  PF05101: {pfam_name: VirB3, role: t4ss, specificity: high, family: "VirB3"}
+  PF04956: {pfam_name: TrbC, role: t4ss, specificity: high, family: "VirB2 pilin"}
+  PF12508: {pfam_name: Transposon_TraM, role: t4ss, specificity: high, family: "Bacteroidetes CTn TraM (GIII T4SS)"}
+  PF07863: {pfam_name: CtnDOT_TraJ, role: t4ss, specificity: high, family: "Bacteroidetes CTn TraJ (GIII T4SS)"}
+  PF10626: {pfam_name: TraO, role: t4ss, specificity: high, family: "Bacteroidetes CTn TraO"}
+  PF12642: {pfam_name: TpcC, role: t4ss, specificity: high, family: "Gram-positive conjugation TcpC"}
+  # ---------------- viral structural / packaging ----------------------------
+  PF03354: {pfam_name: TerL_ATPase, role: terminase, specificity: high, family: "Terminase large subunit"}
+  PF04466: {pfam_name: Terminase_3, role: terminase, specificity: high, family: "Terminase large subunit"}
+  PF03237: {pfam_name: Terminase_6N, role: terminase, specificity: high, family: "T4-like terminase"}
+  PF17289: {pfam_name: Terminase_6C, role: terminase, specificity: high, family: "Terminase nuclease"}
+  PF05876: {pfam_name: GpA_ATPase, role: terminase, specificity: high, family: "Lambda gpA terminase"}
+  PF03592: {pfam_name: Terminase_2, role: terminase, specificity: high, family: "Terminase small subunit"}
+  PF05119: {pfam_name: Terminase_4, role: terminase, specificity: high, family: "Terminase small subunit"}
+  PF04860: {pfam_name: Phage_portal, role: portal, specificity: high, family: "Portal"}
+  PF05136: {pfam_name: Phage_portal_2, role: portal, specificity: high, family: "Portal (lambda)"}
+  PF05065: {pfam_name: Phage_capsid, role: capsid, specificity: high, family: "HK97-fold capsid"}
+  PF03864: {pfam_name: Phage_cap_E, role: capsid, specificity: high, family: "Capsid E"}
+  PF07068: {pfam_name: Gp23, role: capsid, specificity: high, family: "T4 Gp23 capsid"}
+  PF02305: {pfam_name: Phage_F, role: capsid, specificity: high, family: "Microviridae F capsid"}
+  PF04586: {pfam_name: Peptidase_S78, role: prohead_protease, specificity: high, family: "Prohead protease"}
+  PF05135: {pfam_name: Phage_connect_1, role: head_tail, specificity: high, family: "Head-tail connector"}
+  PF06199: {pfam_name: Phage_tail_2, role: tail, specificity: high, family: "Tail tube"}
+  PF05939: {pfam_name: Phage_min_tail, role: tail, specificity: high, family: "Minor tail"}
+  PF10145: {pfam_name: PhageMin_Tail, role: tail, specificity: high, family: "Minor tail"}
+  PF06841: {pfam_name: Phage_T4_gp19, role: tail, specificity: high, family: "Tail tube"}
+  PF17482: {pfam_name: Phage_sheath_1C, role: tail, specificity: high, family: "Tail sheath"}
+  PF04233: {pfam_name: Phage_Mu_F, role: viral_structural, specificity: high, family: "Mu F-like head"}
+  PF00959: {pfam_name: Phage_lysozyme, role: lysis, specificity: medium, family: "Phage lysozyme"}
+  PF20441: {pfam_name: TerL_nuclease, role: terminase, specificity: high, family: "Terminase nuclease"}
+  PF05133: {pfam_name: SPP1_portal, role: portal, specificity: high, family: "SPP1-like portal"}
+  PF23898: {pfam_name: Crass_capsid, role: capsid, specificity: high, family: "Crassvirus capsid"}
+  PF04883: {pfam_name: HK97-gp10_like, role: head_tail, specificity: high, family: "HK97 gp10-like"}
+  PF05709: {pfam_name: Sipho_tail, role: tail, specificity: high, family: "Siphovirus tail"}
+  PF24228: {pfam_name: CrAss_Ring_1, role: tail, specificity: high, family: "Crassvirus tail ring"}
+  PF22768: {pfam_name: SPP1_Dit, role: tail, specificity: high, family: "Siphovirus Dit"}
+  PF06605: {pfam_name: Prophage_tail, role: tail, specificity: high, family: "Prophage tail endopeptidase"}
+  PF05105: {pfam_name: Phage_holin_4_1, role: lysis, specificity: medium, family: "Holin"}
+  PF04531: {pfam_name: Phage_holin_1, role: lysis, specificity: medium, family: "Holin"}
+  # ---------------- integration ---------------------------------------------
+  PF00589: {pfam_name: Phage_integrase, role: integrase, specificity: medium, family: "Tyrosine recombinase",
+            ambiguity: "Also XerCD-like multimer resolution systems"}
+  PF02899: {pfam_name: Phage_int_SAM_1, role: integrase, specificity: medium, family: "Integrase SAM"}
+  PF14659: {pfam_name: Phage_int_SAM_3, role: integrase, specificity: medium, family: "Integrase SAM"}
+  PF07508: {pfam_name: Recombinase, role: integrase, specificity: medium, family: "Large serine recombinase"}
+  PF00665: {pfam_name: rve, role: transposase, specificity: medium, family: "DDE integrase core"}
+  PF01609: {pfam_name: DDE_Tnp_1, role: transposase, specificity: medium, family: "DDE transposase"}
+  PF01527: {pfam_name: HTH_Tnp_1, role: transposase, specificity: medium, family: "Transposase HTH"}
+  PF02371: {pfam_name: Transposase_20, role: transposase, specificity: medium, family: "IS110"}
+  PF03050: {pfam_name: DDE_Tnp_IS66, role: transposase, specificity: medium, family: "IS66"}
+  PF13102: {pfam_name: Phage_int_SAM_5, role: integrase, specificity: medium, family: "Integrase SAM"}
+  PF13495: {pfam_name: Phage_int_SAM_4, role: integrase, specificity: medium, family: "Integrase SAM"}
+  PF01385: {pfam_name: OrfB_IS605, role: transposase, specificity: medium, family: "IS605 TnpB"}
+  PF01797: {pfam_name: Y1_Tnp, role: transposase, specificity: medium, family: "IS200 TnpA"}
+  PF13333: {pfam_name: rve_2, role: transposase, specificity: medium, family: "Integrase core"}
+  PF13683: {pfam_name: rve_3, role: transposase, specificity: medium, family: "Integrase core"}
+  PF01548: {pfam_name: DEDD_Tnp_IS110, role: transposase, specificity: medium, family: "IS110"}
+  PF12762: {pfam_name: DDE_Tnp_IS1595, role: transposase, specificity: medium, family: "IS1595"}
+  PF05598: {pfam_name: DUF772, role: transposase, specificity: medium, family: "Transposase DUF772"}
+  PF13751: {pfam_name: DDE_Tnp_1_6, role: transposase, specificity: medium, family: "DDE transposase"}
+  PF00872: {pfam_name: Transposase_mut, role: transposase, specificity: medium, family: "Mutator"}
+
+# Characterised origin sequences searched directly in the DNA (RNA-initiated
+# replicons carry no initiator protein, so they are invisible to protein searches).
+origin_motifs:
+  ColE1_RNAI_RNAII:
+    sequence: TTGAAGTGGTGGCCTAACTACGGCTACACTAGAAG
+    max_mismatches: 6
+    mechanisms: [theta]
+    specificity: medium
+    family: "ColE1/pMB1-type RNA-primed origin (RNAI/RNAII overlap region)"
+    support: "Conserved region of ColE1-type origins (Tomizawa 1986; Cesareni et al. 1991); found at ColE1 pos. 753 (3 mismatches)"
+
+# PHROG annotations (exact `annot` strings from phrog_annot_v4.tsv) mapped to
+# roles.  PHROG hits supply viral-profile, role-level evidence; only a few
+# annotations imply a mechanism.
+phrog:
+  annot:
+    "replication initiation protein": {role: initiator, mechanisms: [unknown], specificity: medium}
+    "replication protein": {role: initiator, mechanisms: [unknown], specificity: medium}
+    "DNA replication initiation": {role: initiator, mechanisms: [unknown], specificity: medium}
+    "replication": {role: replication_accessory, mechanisms: [unknown], specificity: low}
+    "replication origin binding": {role: initiator, mechanisms: [unknown], specificity: medium}
+    "replication initiation O-like": {role: initiator, mechanisms: [theta, rolling_circle], specificity: medium}
+    "nicking at origin of replication": {role: initiator, mechanisms: [rolling_circle], specificity: medium}
+    "replication initiation by nicking": {role: initiator, mechanisms: [rolling_circle], specificity: medium}
+    "GP16.7-like replication protein": {role: replication_accessory, mechanisms: [protein_primed], specificity: low}
+    "DnaA-like replication initiation protein": {role: initiator, mechanisms: [host_like], specificity: low}
+    "DNA helicase": {role: helicase, specificity: low}
+    "helicase": {role: helicase, specificity: low}
+    "DnaB-like replicative helicase": {role: helicase, specificity: low}
+    "replication helicase": {role: helicase, specificity: low}
+    "DNA primase": {role: primase, specificity: low}
+    "primase": {role: primase, specificity: low}
+    "DNA primase/helicase": {role: primase_helicase, specificity: low}
+    "replicative helicase-primase": {role: primase_helicase, specificity: low}
+    "DNA polymerase/primase": {role: primase, specificity: low}
+    "DNA polymerase": {role: polymerase, specificity: low}
+    "polymerase": {role: polymerase, specificity: low}
+    "DNA polymerase I": {role: polymerase, specificity: low}
+    "DNA polymerase exonuclease subunit": {role: polymerase, specificity: low}
+    "DNA polymerase processivity factor": {role: replication_accessory, specificity: low}
+    "clamp loader of DNA polymerase": {role: replication_accessory, specificity: low}
+    "DnaD-like helicase loader": {role: helicase_loader, specificity: low}
+    "DnaC-like helicase loader": {role: helicase_loader, specificity: low}
+    "helicase loader": {role: helicase_loader, specificity: low}
+    "DNA helicase loader": {role: helicase_loader, specificity: low}
+    "P-like helicase loader": {role: helicase_loader, specificity: low}
+    "single strand DNA binding protein": {role: ssb, specificity: low}
+    "ParB-like partition protein": {role: partition_cbp, specificity: low}
+    "ParA-like partition protein": {role: partition_atpase, specificity: low}
+    "partition protein": {role: partition_other, specificity: low}
+    "partition protein ATPase": {role: partition_atpase, specificity: low}
+    "plasmid stability": {role: partition_other, specificity: low}
+    "toxin": {role: toxin, specificity: low}
+    "antitoxin from a toxin-antitoxin system": {role: antitoxin, specificity: low}
+    "integrase": {role: integrase, specificity: low}
+    "transposase": {role: transposase, specificity: low}
+  category:
+    "head and packaging": {role: viral_structural, specificity: medium}
+    "tail": {role: tail, specificity: medium}
+    "connector": {role: head_tail, specificity: medium}
+    "lysis": {role: lysis, specificity: low}
+    "integration and excision": {role: integrase, specificity: low}

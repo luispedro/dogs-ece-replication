@@ -1,0 +1,61 @@
+accession	label	source_element	role	module	mechanisms	evidence_note
+P03064	pT181 RepC	pT181	initiator	replication	rolling_circle	pT181-family RCR initiator; nicks dso (Koepsel et al. 1985 PNAS; Khan 2005 Plasmid)
+P03065	pC221 RepD	-	initiator	replication	rolling_circle	pT181-family RCR initiator; nicking/closing of dso (Thomas et al. 1990)
+P03862	pC194 Rep	pC194	initiator	replication	rolling_circle	pC194-family RCR initiator (Noirot-Gros et al. 1994)
+P13921	pMV158/pLS1 RepB	pMV158	initiator	replication	rolling_circle	pMV158-family RCR initiator, structure solved (Boer et al. 2009 EMBO J)
+P03858	pE194 RepF	pE194	initiator	replication	rolling_circle	pMV158-family RCR initiator of pE194 (Villafane et al. 1987)
+P03631	phiX174 A	phiX174	initiator	replication	rolling_circle	Microviridae gene A protein; RCR of ssDNA phage (Eisenberg & Kornberg)
+P69546	f1 gene II	M13	initiator	replication	rolling_circle	Inovirus gene II protein; RCR initiator (Meyer & Geider 1979); identical to M13 gII
+Q06419	P2 gene A	P2	initiator	replication	rolling_circle	Phage P2 A protein; RCR-type initiator of a dsDNA phage (Liu & Haggard-Ljungquist 1994)
+Q8BB16	PCV2 Rep	PCV2	initiator	replication	rolling_circle	CRESS-DNA virus Rep (endonuclease + SF3 helicase); RCR (Cheung 2012)
+Q805H4	PCV1 Rep	-	initiator	replication	rolling_circle	CRESS-DNA virus Rep; RCR
+P03856	F RepE	F	initiator	replication	theta	Iteron-binding Rep_3 initiator of F (mini-F) ; theta replication
+P03067	R6K pi	R6K	initiator	replication	theta	Iteron-binding Rep_3 initiator of R6K gamma origin; theta
+P07676	RK2 TrfA	RK2	initiator	replication	theta	IncP initiator binding iterons at oriV; theta
+P03066	R1 RepA	R1	initiator	replication	theta	IncFII RepA initiator; theta, controlled by CopA RNA/CopB
+P22308	pSC101 RepA	pSC101	initiator	replication	theta	Iteron-binding Rep_3 initiator; theta
+Q52546	pPS10 RepA	-	initiator	replication	theta	Iteron-binding Rep_3 initiator, structure solved (Giraldo et al. 2003)
+P18629	pIP501 RepR	pIP501	initiator	replication	theta	Inc18 initiator; unidirectional theta requiring PolA (Bruand et al. 1993)
+P14752	pSM19035 RepS	pSM19035	initiator	replication	theta	Inc18 initiator; theta (Ceglowski & Alonso)
+Q52249	pAMbeta1 RepE	pAMbeta1	initiator	replication	theta	Inc18 initiator; unidirectional theta requiring PolI (Bruand et al. 1991)
+O87367	pSK41/pGO1 Rep	pSK41	initiator	replication	theta	RepA_N family initiator of staphylococcal multiresistance plasmids; theta (Schumacher et al. 2014 PNAS)
+P03051	ColE1 Rop	ColE1	copy_control	replication	theta	ColE1 Rop/Rom copy-number regulator of RNAII-primed theta replication (no Rep protein)
+P10277	P4 alpha	-	initiator	replication	theta	Phage-plasmid P4 origin-binding primase-helicase; theta-type replication from ori1 (Ziegelin & Lanka 1995)
+Q52351	RSF1010 RepC	RSF1010	initiator	replication	strand_displacement	IncQ origin-binding initiator; strand-displacement replication (Scherzinger et al. 1991)
+P20356	RSF1010 RepA	RSF1010	helicase	replication	strand_displacement	IncQ 5'-3' helicase for strand-displacement replication
+P07112	RSF1010 MobA/RepB	RSF1010	relaxase_primase	transfer	strand_displacement	Bifunctional: N-terminal MobA relaxase (transfer) + C-terminal RepB' primase (replication)
+P03688	lambda O	lambda	initiator	replication	theta;rolling_circle	Lambda origin-binding protein; theta early, sigma/rolling-circle late (Furth & Wickner)
+P03689	lambda P	lambda	helicase_loader	replication	theta;rolling_circle	Lambda helicase loader for DnaB
+Q38152	SPP1 G40P	-	helicase	replication	theta;rolling_circle	SPP1 replicative helicase; SPP1 switches theta to sigma (Missich et al. 1997)
+Q38151	SPP1 G39P	-	helicase_loader	replication	theta;rolling_circle	SPP1 helicase loader
+P03692	T7 gp4	-	primase_helicase	replication	strand_displacement;theta	T7 primase-helicase; bidirectional replication of linear genome
+P00581	T7 gp5	-	polymerase	replication	strand_displacement;theta	T7 family A DNA polymerase
+P04415	T4 gp43	-	polymerase	replication	theta	T4 family B DNA polymerase; origin and recombination-dependent replication
+P04530	T4 gp41	-	helicase	replication	theta	T4 DnaB-like replicative helicase
+P04520	T4 gp61	-	primase	replication	theta	T4 DnaG-like primase
+P03680	phi29 DNA pol	-	polymerase	replication	protein_primed	Protein-primed family B polymerase (linear genomes with terminal protein)
+P03681	phi29 TP	-	terminal_protein	replication	protein_primed	phi29 terminal protein (primer)
+P0ACB0	E. coli DnaB	-	helicase	replication	host_like	Chromosomal replicative helicase (host-like homolog)
+P0ABS5	E. coli DnaG	-	primase	replication	host_like	Chromosomal primase (host-like homolog)
+P03004	E. coli DnaA	-	initiator	replication	host_like	Chromosomal initiator; homologs on some secondary replicons
+P00582	E. coli PolA	-	polymerase	replication	host_like	DNA polymerase I (host-like)
+P62556	F SopA	F	partition_atpase	maintenance	-	Type Ia partition ATPase
+P62558	F SopB	F	partition_cbp	maintenance	-	Type Ia centromere-binding protein
+P07620	P1 ParA	-	partition_atpase	maintenance	-	Type Ia partition ATPase
+P07621	P1 ParB	-	partition_cbp	maintenance	-	Type Ia centromere-binding protein
+P11904	R1 ParM	R1	partition_atpase	maintenance	-	Type II actin-like partition ATPase
+Q8KNP3	pBtoxis TubZ	-	partition_atpase	maintenance	-	Type III tubulin-like partition GTPase
+P07674	RK2 KorB	RK2	partition_cbp	maintenance	-	IncP KorB centromere-binding/regulator
+Q54944	pSM19035 zeta	pSM19035	toxin	maintenance	-	Zeta toxin of epsilon/zeta TA system
+P14565	F TraI	F	relaxase	transfer	-	MOBF conjugative relaxase/helicase; transfer-associated nickase (difficult negative)
+P13925	pMV158 MobM	pMV158	relaxase	transfer	-	MOBV relaxase (Pre/Mob); transfer-associated nickase (difficult negative)
+P03857	pE194 Pre	pE194	relaxase	transfer	-	Pre/Mob plasmid recombination enzyme (MOBV); not a vegetative replication initiator
+P13658	ColE1 MbeA	ColE1	relaxase	transfer	-	MOBP relaxase for mobilization of ColE1
+P96635	ICEBs1 NicK	-	relaxase	transfer	-	ICE relaxase; ICEBs1 can undergo autonomous RCR after excision (Lee et al. 2010) - annotated as transfer
+Q04230	R388 TrwB	-	coupling_protein	transfer	-	Type IV coupling protein (VirD4 family)
+P33790	F TraG	F	t4ss	transfer	-	F-type T4SS mating pair stabilisation protein
+P54308	SPP1 TerL	-	terminase	viral	-	Large terminase subunit
+P54309	SPP1 portal	-	portal	viral	-	Portal protein
+Q38582	SPP1 capsid	-	capsid	viral	-	Major capsid protein
+Q45126	pBI143 RepA	pBI143	initiator	replication	unknown	Bacteroides cryptic plasmid initiator; mechanism not experimentally established (exemplar only)
+Q45125	pBI143 MobA	pBI143	relaxase	transfer	-	Bacteroides mobilization protein (exemplar)

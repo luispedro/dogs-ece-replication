@@ -1,0 +1,70 @@
+element	threshold_set	expected	assigned	tier	outcome	initiator_families	reference_support	flags	purpose
+pT181	default	rolling_circle	rolling_circle	strong	correct	RepD-like_N;Rep_trans;pC221 RepD	pC221 RepD (system-level; 82% id)		positive
+pC194	default	rolling_circle	rolling_circle	tentative	correct	Rep_1;REP_ORF2-G2P			positive
+pMV158	default	rolling_circle	rolling_circle	strong	correct	Rep_OBD;pE194 RepF	pE194 RepF (family-level; 26% id)		positive; carries MobM relaxase
+pE194	default	rolling_circle	rolling_circle	tentative	correct	Rep_OBD			positive; carries Pre/Mob relaxase
+pUB110	default	rolling_circle	rolling_circle	strong	correct	Rep_1;pC194 Rep	pC194 Rep (family-level; 33% id)		positive
+phiX174	default	rolling_circle	rolling_circle	tentative	correct	Phage_GPA;REP_ORF2-G2P;DNA replication initiation			positive
+M13	default	rolling_circle	rolling_circle	tentative	correct	G2P_X_C;Phage_CRI;replication protein			positive
+PCV2	default	rolling_circle	rolling_circle	strong	correct	Viral_Rep;PCV1 Rep	PCV1 Rep (system-level; 86% id)		positive
+F	default	theta	theta	strong	correct	Rep3_N | Rep3_C;Rep3_N;replication initiation protein;pPS10 RepA	pPS10 RepA (family-level; 25% id)	2_compatible_initiators	positive; difficult negative for relaxase (TraI)
+RK2	default	theta	theta	tentative	correct	TrfA			positive; carries TraI relaxase
+R6K	default	theta	theta	strong	correct	Rep3_C;Rep3_N;pPS10 RepA	pPS10 RepA (family-level; 26% id)		positive
+R1	default	theta	theta	tentative	correct	IncFII_repA			positive
+pSC101	default	theta	theta	strong	correct	Rep3_C;Rep3_N;pPS10 RepA	pPS10 RepA (family-level; 26% id)		positive
+ColE1	default	theta	theta	tentative	correct			characterised_origin_sequence;no_initiator_mechanism_from_accessory	RNA-initiated theta without Rep protein; expected unresolved or copy-control-only
+pSK41	default	theta	rolling_circle|theta	conflicting	flagged_conflict	RepA_N | Rep_1;pC194 Rep	pC194 Rep (family-level; 36% id) | pC194 Rep (family-level; 33% id) | pC194 Rep (system-level; 84% id)	incompatible_initiators	positive
+pIP501	default	theta	theta	strong	correct	pAMbeta1 RepE	pAMbeta1 RepE (system-level; 97% id)		positive
+pAMbeta1	default	theta	theta	strong	correct	pSM19035 RepS	pSM19035 RepS (system-level; 98% id)		positive
+pSM19035	default	theta	theta	strong	correct	pAMbeta1 RepE	pAMbeta1 RepE (system-level; 98% id) | pAMbeta1 RepE (system-level; 98% id)	2_compatible_initiators	positive
+RSF1010	default	strand_displacement	strand_displacement	tentative	correct	RepC			positive; MobA relaxase-primase is difficult negative for RCR
+lambda	default	theta;rolling_circle	rolling_circle|theta	tentative	correct	Phage_rep_O;Phage_rep_O_C;replication initiation O-like			positive; multi-mode virus
+P2	default	rolling_circle	rolling_circle	tentative	correct	Phage_GPA;REP_ORF2-G2P;nicking at origin of replication			positive
+Tn916	default	none	unassigned	tentative	correct	Rep_trans;Rol_Rep_N;replication initiation protein		rep_trans_in_transfer_context;initiator_of_unknown_mechanism	difficult negative: MobT relaxase, no vegetative plasmid replicon
+pBI143	default	unknown	unassigned	tentative	exploratory	RepL		initiator_of_unknown_mechanism	exploratory gut exemplar; mechanism not established
+pT181	strict	rolling_circle	rolling_circle	strong	correct	RepD-like_N;pC221 RepD	pC221 RepD (system-level; 82% id)		positive
+pC194	strict	rolling_circle	rolling_circle	tentative	correct	Rep_1			positive
+pMV158	strict	rolling_circle	rolling_circle	tentative	correct	Rep_OBD			positive; carries MobM relaxase
+pE194	strict	rolling_circle	rolling_circle	tentative	correct	Rep_OBD			positive; carries Pre/Mob relaxase
+pUB110	strict	rolling_circle	rolling_circle	tentative	correct	Rep_1			positive
+phiX174	strict	rolling_circle	rolling_circle	tentative	correct	Phage_GPA;DNA replication initiation			positive
+M13	strict	rolling_circle	rolling_circle	tentative	correct	G2P_X_C;Phage_CRI;replication protein			positive
+PCV2	strict	rolling_circle	rolling_circle	strong	correct	Viral_Rep;PCV1 Rep	PCV1 Rep (system-level; 86% id)		positive
+F	strict	theta	theta	strong	correct	Rep3_N | Rep3_C;Rep3_N		2_compatible_initiators	positive; difficult negative for relaxase (TraI)
+RK2	strict	theta	theta	tentative	correct	TrfA			positive; carries TraI relaxase
+R6K	strict	theta	theta	strong	correct	Rep3_C;Rep3_N			positive
+R1	strict	theta	theta	tentative	correct	IncFII_repA			positive
+pSC101	strict	theta	theta	tentative	correct	Rep3_C;Rep3_N			positive
+ColE1	strict	theta	theta	tentative	correct			characterised_origin_sequence;no_initiator_mechanism_from_accessory	RNA-initiated theta without Rep protein; expected unresolved or copy-control-only
+pSK41	strict	theta	rolling_circle|theta	conflicting	flagged_conflict	RepA_N | Rep_1 | Rep_1;pC194 Rep	pC194 Rep (family-level; 33% id) | pC194 Rep (family-level; 84% id)	incompatible_initiators	positive
+pIP501	strict	theta	theta	strong	correct	pAMbeta1 RepE	pAMbeta1 RepE (system-level; 97% id)		positive
+pAMbeta1	strict	theta	theta	strong	correct	pSM19035 RepS	pSM19035 RepS (system-level; 98% id)		positive
+pSM19035	strict	theta	theta	strong	correct	pAMbeta1 RepE	pAMbeta1 RepE (system-level; 98% id) | pAMbeta1 RepE (system-level; 98% id)	2_compatible_initiators	positive
+RSF1010	strict	strand_displacement	strand_displacement	tentative	correct	RepC			positive; MobA relaxase-primase is difficult negative for RCR
+lambda	strict	theta;rolling_circle	rolling_circle|theta	tentative	correct	Phage_rep_O;Phage_rep_O_C;replication initiation O-like			positive; multi-mode virus
+P2	strict	rolling_circle	rolling_circle	tentative	correct	Phage_GPA;nicking at origin of replication			positive
+Tn916	strict	none	unassigned	tentative	correct	Rep_trans;Rol_Rep_N;replication initiation protein		rep_trans_in_transfer_context;initiator_of_unknown_mechanism	difficult negative: MobT relaxase, no vegetative plasmid replicon
+pBI143	strict	unknown	unassigned	tentative	exploratory	RepL		initiator_of_unknown_mechanism	exploratory gut exemplar; mechanism not established
+pT181	relaxed	rolling_circle	rolling_circle	strong	correct	RepD-like_N;Rep_trans;pC221 RepD	pC221 RepD (system-level; 82% id)		positive
+pC194	relaxed	rolling_circle	rolling_circle	tentative	correct	Rep_1;REP_ORF2-G2P			positive
+pMV158	relaxed	rolling_circle	rolling_circle	strong	correct	Rep_OBD;pE194 RepF	pE194 RepF (family-level; 26% id)		positive; carries MobM relaxase
+pE194	relaxed	rolling_circle	rolling_circle	tentative	correct	Rep_OBD			positive; carries Pre/Mob relaxase
+pUB110	relaxed	rolling_circle	rolling_circle	strong	correct	Rep_1;pC194 Rep	pC194 Rep (family-level; 33% id)		positive
+phiX174	relaxed	rolling_circle	rolling_circle	tentative	correct	Phage_GPA;REP_ORF2-G2P;DNA replication initiation			positive
+M13	relaxed	rolling_circle	rolling_circle	tentative	correct	G2P_X_C;Phage_CRI;replication protein			positive
+PCV2	relaxed	rolling_circle	rolling_circle	strong	correct	Viral_Rep;PCV1 Rep	PCV1 Rep (system-level; 86% id)		positive
+F	relaxed	theta	theta	strong	correct	Rep3_N | Rep3_C;Rep3_N;replication initiation protein;pPS10 RepA	pPS10 RepA (family-level; 25% id)	2_compatible_initiators	positive; difficult negative for relaxase (TraI)
+RK2	relaxed	theta	theta	tentative	correct	TrfA			positive; carries TraI relaxase
+R6K	relaxed	theta	theta	strong	correct	Rep3_C;Rep3_N;pPS10 RepA	pPS10 RepA (family-level; 26% id)		positive
+R1	relaxed	theta	theta	tentative	correct	IncFII_repA			positive
+pSC101	relaxed	theta	theta	strong	correct	Rep3_C;Rep3_N;pPS10 RepA	pPS10 RepA (family-level; 26% id)		positive
+ColE1	relaxed	theta	theta	tentative	correct			characterised_origin_sequence;no_initiator_mechanism_from_accessory	RNA-initiated theta without Rep protein; expected unresolved or copy-control-only
+pSK41	relaxed	theta	rolling_circle|theta	conflicting	flagged_conflict	RepA_N | Rep_1;pC194 Rep	pC194 Rep (family-level; 36% id) | pC194 Rep (family-level; 33% id) | pC194 Rep (system-level; 84% id)	incompatible_initiators	positive
+pIP501	relaxed	theta	theta	strong	correct	pAMbeta1 RepE	pAMbeta1 RepE (system-level; 97% id)		positive
+pAMbeta1	relaxed	theta	theta	strong	correct	pSM19035 RepS	pSM19035 RepS (system-level; 98% id)		positive
+pSM19035	relaxed	theta	theta	strong	correct	pAMbeta1 RepE	pAMbeta1 RepE (system-level; 98% id) | pAMbeta1 RepE (system-level; 98% id)	2_compatible_initiators	positive
+RSF1010	relaxed	strand_displacement	strand_displacement	tentative	correct	RepC			positive; MobA relaxase-primase is difficult negative for RCR
+lambda	relaxed	theta;rolling_circle	rolling_circle|theta	tentative	correct	Phage_rep_O;Phage_rep_O_C;replication initiation O-like			positive; multi-mode virus
+P2	relaxed	rolling_circle	rolling_circle	tentative	correct	Phage_GPA;REP_ORF2-G2P;nicking at origin of replication			positive
+Tn916	relaxed	none	unassigned	tentative	correct	Rep_trans;Rol_Rep_N;replication initiation protein		rep_trans_in_transfer_context;initiator_of_unknown_mechanism	difficult negative: MobT relaxase, no vegetative plasmid replicon
+pBI143	relaxed	unknown	unassigned	tentative	exploratory	RepL		initiator_of_unknown_mechanism	exploratory gut exemplar; mechanism not established

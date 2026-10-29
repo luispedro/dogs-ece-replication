@@ -1,0 +1,5 @@
+x	y	rho	p	n	q_bh
+log10_length	n_replication_roles	0.6502	1.32e-23	185	1.759e-23
+log10_length	n_maintenance_roles	0.6862	4.302e-27	185	8.604e-27
+log10_length	n_transfer_roles	0.3486	1.155e-06	185	1.155e-06
+log10_length	n_modules	0.7064	2.844e-29	185	1.137e-28

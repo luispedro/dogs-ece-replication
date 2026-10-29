@@ -1,0 +1,9 @@
+.pixi/
+__pycache__/
+*.pyc
+data/raw/
+data/refs/
+jugfile.jugdata/
+results/work/
+logs/
+.pytest_cache/

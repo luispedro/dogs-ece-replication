@@ -1,0 +1,5 @@
+test	chi2	p_perm	cramers_v	n
+subgroup x mechanism class (all ECEs)	62.82	0.00045	0.3364	185
+subgroup x support tier (all ECEs)	25.41	0.00045	0.2621	185
+subgroup x mechanism class (one per related group)	70.34	0.0002	0.3852	158
+log10 length ~ mechanism class (Kruskal-Wallis)		4.959e-09		185

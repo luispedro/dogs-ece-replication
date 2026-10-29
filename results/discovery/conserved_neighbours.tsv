@@ -1,0 +1,66 @@
+focal_family	neighbour_family	n_elements	n_focal_elements	median_offset	neighbour_role	neighbour_pfam	neighbour_has_function
+PC00255	PC00618	2	2	-2		DUF3847	False
+PC00255	PC00619	2	2	-3	relaxase	MobA_MobL	True
+PC00255	PC00620	2	2	-4		Big_14	True
+PC00255	PC00621	2	2	3		SBP_bac_5	True
+PC00255	PC00623	2	2	-1			False
+PC00341	PC00127	2	2	1			False
+PC00341	PC00340	2	2	3			False
+PC00341	PC02327	2	2	2	partition_atpase	AAA_31	True
+PC00523	PC00519	2	2	1	integrase	Phage_integrase	True
+PC01014	PC00264	2	2	-2.5	partition_atpase	MipZ	True
+PC01014	PC00973	2	2	-1.5			False
+PC01014	PC00984	2	2	4			False
+PC01014	PC00988	2	2	-4	mob_accessory	NikA-like	True
+PC01014	PC01046	2	2	3		AbiEi_4	True
+PC01014	PC01047	2	2	2		AbiEii	True
+PC01014	PC01133	2	2	1		cNMP_binding	True
+PC01191	PC00416	3	5	4			False
+PC01191	PC00417	4	5	2			False
+PC01191	PC00418	3	5	1		DUF5688	False
+PC01191	PC01086	2	5	-2			False
+PC01191	PC01087	3	5	-3			True
+PC01191	PC01088	2	5	-3.5			False
+PC01191	PC01212	2	5	-1.5	transposase	Y1_Tnp	True
+PC01191	PC03052	2	5	-1.5	transposase	Cas12f1-like_TNB	True
+PC01191	PC04170	3	5	3	antitoxin	RelB	True
+PC01203	PC00820	3	3	2	multimer_resolution	Resolvase	True
+PC01203	PC01212	2	3	0	transposase	Y1_Tnp	True
+PC01203	PC01235	2	3	3.5			False
+PC01203	PC01236	3	3	3		DUF3575	False
+PC01203	PC03052	2	3	0	transposase	OrfB_IS605	True
+PC01495	PC02323	2	2	-3			False
+PC01495	PC02324	2	2	-2		SSAP_Sak	True
+PC01495	PC02326	2	2	1			False
+PC01495	PC02327	2	2	2	partition_atpase	AAA_31	True
+PC01495	PC02328	2	2	3			True
+PC01786	PC00414	2	6	-3			True
+PC01786	PC01510	2	6	-2			False
+PC01786	PC01833	2	6	2		RecU	True
+PC01786	PC02327	2	6	4	partition_atpase	AAA_31	True
+PC01786	PC02576	3	6	-1			False
+PC02931	PC02930	2	2	-1			False
+PC02931	PC03038	2	2	0.5			True
+PC02931	PC03039	2	2	2.5	relaxase	Relaxase	True
+PC02931	PC04939	2	2	-2		DUF6722	False
+PC02932	PC02935	2	3	2.5	relaxase	Mob_Pre	True
+PC02932	PC02939	2	3	-1			False
+PC02958	PC00415	2	3	3		RadC	True
+PC02958	PC00589	2	3	4	mob_accessory	NikA-like	True
+PC02958	PC02939	2	3	-4			False
+PC02958	PC02955	2	3	-3			False
+PC02958	PC02956	2	3	-2			False
+PC02958	PC02957	2	3	-1			False
+PC02958	PC02959	2	3	1			False
+PC02958	PC02960	2	3	2			False
+PC03728	PC03813	2	3	-3		DUF961	True
+PC03728	PC05041	2	3	1.5			True
+PC03728	PC05044	2	3	-1.5	coupling_protein	FtsK_SpoIIIE	True
+PC04042	PC04304	2	2	-1	relaxase	Mob_Pre	True
+PC04142	PC00009	3	4	-1			True
+PC04142	PC05070	2	4	4		Polysacc_synt_2	True
+PC04142	PC05100	2	4	1			False
+PC04142	PC05142	3	4	2		Bac_DNA_binding	True
+PC04864	PC04865	2	4	-1	integrase	Phage_integrase	True
+PC05159	PC05158	3	3	2			False
+PC05159	PC05199	3	3	1			True
